@@ -1,0 +1,51 @@
+{
+  "name": "tina-react-router-starter",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx tinacms build && react-router build",
+    "dev": "npx tinacms dev -c \"react-router dev\"",
+    "start": "react-router-serve ./build/server/index.js",
+    "typecheck": "react-router typegen && tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/completejavascript/tina-react-router-starter.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/completejavascript/tina-react-router-starter/issues"
+  },
+  "homepage": "https://github.com/completejavascript/tina-react-router-starter#readme",
+  "description": "",
+  "dependencies": {
+    "@mantine/core": "^7.17.1",
+    "@mantine/hooks": "^7.17.1",
+    "@react-router/node": "^7.3.0",
+    "@tabler/icons-react": "^3.31.0",
+    "isbot": "^5.1.23",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-router": "^7.3.0",
+    "react-router-dom": "^7.3.0",
+    "tinacms": "^2.7.2"
+  },
+  "devDependencies": {
+    "@react-router/dev": "^7.3.0",
+    "@react-router/serve": "^7.3.0",
+    "@tinacms/cli": "^1.9.2",
+    "@types/node": "^22.13.10",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "postcss": "^8.5.3",
+    "postcss-preset-mantine": "^1.17.0",
+    "postcss-simple-vars": "^7.0.1",
+    "react-router-devtools": "^1.1.6",
+    "typescript": "^5.8.2",
+    "vite": "^6.2.1",
+    "vite-tsconfig-paths": "^5.1.4"
+  }
+}
