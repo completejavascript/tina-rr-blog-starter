@@ -1,5 +1,5 @@
 {
-  "name": "tina-react-router-starter",
+  "name": "tina-rr-blog-template",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -11,15 +11,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/completejavascript/tina-react-router-starter.git"
+    "url": "git+https://github.com/completejavascript/tina-rr-blog-template.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/completejavascript/tina-react-router-starter/issues"
+    "url": "https://github.com/completejavascript/tina-rr-blog-template/issues"
   },
-  "homepage": "https://github.com/completejavascript/tina-react-router-starter#readme",
+  "homepage": "https://github.com/completejavascript/tina-rr-blog-template#readme",
   "description": "",
   "dependencies": {
     "@mantine/core": "^7.17.1",
