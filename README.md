@@ -90,4 +90,5 @@ This template comes with [Mantine](https://mantine.dev/) already configured for 
 
 ## TODO
 
-- Update `CustomTinaMarkdown` custom components.
+- [ ] Update `CustomTinaMarkdown` custom components.
+- [ ] Support multiple languages
