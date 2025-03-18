@@ -1,16 +1,17 @@
-import { Container } from "@mantine/core";
+import { Container, Flex } from "@mantine/core";
 import { Outlet } from "react-router";
 import LanguageSwitcher from "~/components/LanguageSwitcher";
 
-interface LanguageSwitcherProps {
-  children?: React.ReactNode;
-}
-
-export const MainLayout: React.FC<LanguageSwitcherProps> = ({ children }) => {
+const MainLayout: React.FC = () => {
   return (
     <Container size="md" py="xl">
-      <LanguageSwitcher />
-      {children}
+      <Flex justify={"end"}>
+        <LanguageSwitcher />
+      </Flex>
+
+      <Outlet />
     </Container>
   );
 };
+
+export default MainLayout;

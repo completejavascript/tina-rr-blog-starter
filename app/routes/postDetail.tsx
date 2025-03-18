@@ -1,10 +1,9 @@
-import { Container, Paper, Stack, Title } from "@mantine/core";
+import { Paper, Stack, Title } from "@mantine/core";
 import { useLoaderData } from "react-router";
 import { client } from "tina/__generated__/client";
 import { tinaField, useTina } from "tinacms/dist/react";
 import { CustomTinaMarkdown } from "~/components/CustomTinaMarkdown";
 import type { Route } from "./+types/home";
-import { MainLayout } from "~/layouts/MainLayout";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -42,19 +41,14 @@ export default function BlogDetailRoute() {
   const { title, body } = data.post;
 
   return (
-    <MainLayout>
-      <Paper p="lg" shadow="sm" withBorder>
-        <Stack gap="md">
-          <Title order={1}>{title}</Title>
+    <Paper p="lg" shadow="sm" withBorder>
+      <Stack gap="md">
+        <Title order={1}>{title}</Title>
 
-          <div
-            className="tina-content"
-            data-tina-field={tinaField(data, "post")}
-          >
-            <CustomTinaMarkdown content={body} />
-          </div>
-        </Stack>
-      </Paper>
-    </MainLayout>
+        <div className="tina-content" data-tina-field={tinaField(data, "post")}>
+          <CustomTinaMarkdown content={body} />
+        </div>
+      </Stack>
+    </Paper>
   );
 }
