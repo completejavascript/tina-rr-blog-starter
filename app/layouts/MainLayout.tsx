@@ -1,6 +1,6 @@
 import { Container, Flex } from "@mantine/core";
 import { Outlet } from "react-router";
-import LanguageSwitcher from "~/components/LanguageSwitcher";
+import { LanguageSwitcher } from "~/components/LanguageSwitcher";
 
 const MainLayout: React.FC = () => {
   return (

@@ -94,3 +94,11 @@ export const constructPathWithLanguage = (
 
   return "/" + newPathParts.join("/");
 };
+
+/**
+ * Function to translate paths between languages
+ * */
+export const translatePath = (path: string, targetLang: string): string => {
+  const pathParts = getPathParts(path);
+  return constructPathWithLanguage(pathParts, targetLang);
+};

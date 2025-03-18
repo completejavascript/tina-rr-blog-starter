@@ -18,7 +18,7 @@ export function getLanguageName(code: string): string {
  * Language Switcher component that allows switching between available languages
  * and preserves the current path when switching
  */
-const LanguageSwitcher: React.FC = () => {
+export const LanguageSwitcher: React.FC = () => {
   const { language, setLanguage } = useLanguage();
 
   /**
@@ -53,5 +53,3 @@ const LanguageSwitcher: React.FC = () => {
     </Menu>
   );
 };
-
-export default LanguageSwitcher;
