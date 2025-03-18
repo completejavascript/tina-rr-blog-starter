@@ -19,11 +19,13 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLoaderData,
 } from "react-router";
 
 import type { Route } from "./+types/root";
 import "./app.css";
 import LanguageProvider from "./context/LanguageContext";
+import { extractLanguageFromUrl } from "./utils/url";
 
 // export const links: Route.LinksFunction = () => [
 //   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -38,7 +40,20 @@ import LanguageProvider from "./context/LanguageContext";
 //   },
 // ];
 
+export async function loader({ request }: Route.LoaderArgs) {
+  const url = request.url;
+  const languageFromUrl = extractLanguageFromUrl(url);
+
+  return {
+    data: {
+      language: languageFromUrl,
+    },
+  };
+}
+
 export function Layout({ children }: { children: React.ReactNode }) {
+  const { data } = useLoaderData<typeof loader>();
+
   return (
     <html lang="en" {...mantineHtmlProps}>
       <head>
@@ -50,7 +65,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         <MantineProvider>
-          <LanguageProvider>{children}</LanguageProvider>
+          <LanguageProvider language={data.language}>
+            {children}
+          </LanguageProvider>
         </MantineProvider>
         <ScrollRestoration />
         <Scripts />

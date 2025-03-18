@@ -31,6 +31,7 @@ interface LanguageContextType {
  */
 interface LanguageProviderProps {
   children: React.ReactNode;
+  language: string;
 }
 
 // Create context with default values
@@ -46,10 +47,11 @@ export const LanguageContext = createContext<LanguageContextType>({
  */
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({
   children,
+  language: _language,
 }) => {
   const location = useLocation();
   const navigate = useNavigate();
-  const [language, setLanguageState] = useState<string>(defaultLanguage);
+  const [language, setLanguageState] = useState<string>(_language);
 
   // Extract language from URL path when component mounts or URL changes
   useEffect(() => {

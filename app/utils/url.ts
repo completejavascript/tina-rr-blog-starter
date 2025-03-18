@@ -33,6 +33,23 @@ export const extractLanguageFromPath = (path: string): string => {
 };
 
 /**
+ * Extracts the language code from a full URL
+ * @param url The complete URL to extract language from
+ * @returns The language code if supported, otherwise the default language
+ */
+export const extractLanguageFromUrl = (url: string): string => {
+  try {
+    // Parse the URL to get its components
+    const parsedUrl = new URL(url);
+    return extractLanguageFromPath(parsedUrl.pathname);
+  } catch (error) {
+    // If URL parsing fails, return the default language
+    console.error("Invalid URL format:", error);
+    return appConfig.defaultLanguage;
+  }
+};
+
+/**
  * Helper function to construct a URL path with the appropriate language prefix
  */
 export const constructPathWithLanguage = (
