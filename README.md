@@ -1,7 +1,5 @@
 This is a [Tina CMS](https://tina.io/) starter project. 
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/11e3a8ad-3aa1-4e75-8ea6-94f84b404646/deploy-status)](https://app.netlify.com/sites/tina-rr7-starter/deploys)
-
 ## Setup
 
 - Fork this repo
