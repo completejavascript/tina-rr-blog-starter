@@ -1,7 +1,8 @@
 import { Button, Card, Grid, Stack, Text, Title } from "@mantine/core";
 import { Link, useLoaderData } from "react-router";
-import { client } from "tina/__generated__/client";
 import { useTranslation } from "~/hooks/useTranslation";
+import { getPostsFromLanguage } from "~/utils/tina";
+import { extractLanguageFromUrl } from "~/utils/url";
 import type { Route } from "./+types/home";
 
 interface Post {
@@ -24,19 +25,13 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
-export async function loader() {
-  const postsResponse = await client.queries.postConnection();
+export async function loader({ request }: Route.LoaderArgs) {
+  const url = request.url;
+  const languageFromUrl = extractLanguageFromUrl(url);
+  const posts = await getPostsFromLanguage(languageFromUrl);
 
   return {
-    posts:
-      postsResponse.data.postConnection.edges
-        ?.filter((edge) => Boolean(edge?.node))
-        ?.map((edge) => {
-          return {
-            slug: edge?.node?._sys.filename,
-            title: edge?.node?.title || edge?.node?._sys.filename,
-          };
-        }) ?? [],
+    posts,
   };
 }
 
