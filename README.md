@@ -88,5 +88,8 @@ This template comes with [Mantine](https://mantine.dev/) already configured for 
 
 ## TODO
 
+- [x] Support multiple languages
+- [ ] Generate robots.txt
+- [ ] Generate sitemap.xml
+- [ ] Generate metadata for SEO
 - [ ] Update `CustomTinaMarkdown` custom components.
-- [ ] Support multiple languages
