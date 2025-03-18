@@ -9,10 +9,8 @@ import {
   Mark,
   Table,
   Text,
-  ThemeIcon,
-  Title,
+  Title
 } from "@mantine/core";
-import { IconCircleCheck, IconCircleDot } from "@tabler/icons-react";
 import React from "react";
 import { Link } from "react-router";
 import { TinaMarkdown, type TinaMarkdownContent } from "tinacms/dist/rich-text";
@@ -99,21 +97,21 @@ const components = {
   rich_text: (props: any) => <div {...props} />,
 
   // Task lists (checkboxes)
-  task_list_item: (props: any) => {
-    const { checked } = props;
-    return (
-      <List.Item
-        icon={
-          <ThemeIcon color={checked ? "green" : "gray"} size={20} radius="xl">
-            {checked ? (
-              <IconCircleCheck size={12} />
-            ) : (
-              <IconCircleDot size={12} />
-            )}
-          </ThemeIcon>
-        }
-        {...props}
-      />
-    );
-  },
+  // task_list_item: (props: any) => {
+  //   const { checked } = props;
+  //   return (
+  //     <List.Item
+  //       icon={
+  //         <ThemeIcon color={checked ? "green" : "gray"} size={20} radius="xl">
+  //           {checked ? (
+  //             <IconCircleCheck size={12} />
+  //           ) : (
+  //             <IconCircleDot size={12} />
+  //           )}
+  //         </ThemeIcon>
+  //       }
+  //       {...props}
+  //     />
+  //   );
+  // },
 };
