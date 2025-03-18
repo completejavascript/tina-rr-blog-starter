@@ -1,7 +1,9 @@
 import { Button, Card, Grid, Stack, Text, Title } from "@mantine/core";
 import { Link, useLoaderData } from "react-router";
+import client from "tina/__generated__/client";
+import { usePathWithLanguage } from "~/hooks/usePathWithLanguage";
 import { useTranslation } from "~/hooks/useTranslation";
-import { getPostsFromLanguage } from "~/utils/tina";
+import { parseFilename } from "~/utils/file";
 import { extractLanguageFromUrl } from "~/utils/url";
 import type { Route } from "./+types/home";
 
@@ -27,8 +29,27 @@ export function meta({}: Route.MetaArgs) {
 
 export async function loader({ request }: Route.LoaderArgs) {
   const url = request.url;
-  const languageFromUrl = extractLanguageFromUrl(url);
-  const posts = await getPostsFromLanguage(languageFromUrl);
+  const language = extractLanguageFromUrl(url);
+
+  const postsResponse = await client.queries.postConnection();
+  const posts =
+    postsResponse.data.postConnection.edges
+      ?.filter((edge) => {
+        if (!edge?.node?._sys.filename) return false;
+
+        const filename = edge.node._sys.filename;
+        const { language: fileLanguage } = parseFilename(filename);
+        return language === fileLanguage;
+      })
+      ?.map((edge) => {
+        const filename = edge?.node?._sys.filename!;
+        const { baseName } = parseFilename(filename);
+
+        return {
+          slug: baseName,
+          title: edge?.node?.title ?? baseName,
+        };
+      }) ?? [];
 
   return {
     posts,
@@ -38,6 +59,7 @@ export async function loader({ request }: Route.LoaderArgs) {
 export default function BlogsRoute() {
   const { posts } = useLoaderData() as LoaderData;
   const { t } = useTranslation();
+  const langPath = usePathWithLanguage();
 
   return (
     <Stack gap="xl">
@@ -55,7 +77,7 @@ export default function BlogsRoute() {
 
                 <Button
                   component={Link}
-                  to={`/posts/${post.slug}`}
+                  to={langPath(`/posts/${post.slug}`)}
                   variant="light"
                   color="blue"
                   fullWidth

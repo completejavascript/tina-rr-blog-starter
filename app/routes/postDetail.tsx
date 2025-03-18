@@ -4,6 +4,7 @@ import { client } from "tina/__generated__/client";
 import { tinaField, useTina } from "tinacms/dist/react";
 import { CustomTinaMarkdown } from "~/components/CustomTinaMarkdown";
 import type { Route } from "./+types/home";
+import { extractLanguageFromUrl } from "~/utils/url";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -15,11 +16,13 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
-export async function loader({ params }: Route.LoaderArgs) {
+export async function loader({ params, request }: Route.LoaderArgs) {
   const { slug } = params;
+  const url = request.url;
+  const language = extractLanguageFromUrl(url);
 
   const result = await client.queries.post({
-    relativePath: `${slug}.md`,
+    relativePath: `${slug}.${language}.md`,
   });
 
   return {

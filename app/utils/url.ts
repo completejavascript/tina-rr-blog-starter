@@ -14,6 +14,25 @@ export function getFullLanguagePath(
 }
 
 /**
+ * Generate URL path with smart language handling
+ * @param path - The base path without language prefix
+ * @param language - The language code
+ * @returns URL path with language prefix only for non-default languages
+ */
+export function getSmartLanguagePath(path: string, language: string): string {
+  // Ensure path starts with a slash
+  const normalizedPath = path.startsWith("/") ? path : `/${path}`;
+
+  // Skip language prefix if it's the default language
+  if (language === appConfig.defaultLanguage) {
+    return normalizedPath;
+  }
+
+  // Add language prefix for non-default languages
+  return `/${language}${normalizedPath}`;
+}
+
+/**
  * Helper function to extract path parts from a URL
  */
 export const getPathParts = (path: string): string[] => {

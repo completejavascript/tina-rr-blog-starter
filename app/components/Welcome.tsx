@@ -12,9 +12,10 @@ import { Link } from "react-router";
 import logoDark from "~/assets/logo-dark.svg";
 import logoLight from "~/assets/logo-light.svg";
 import { useTranslation } from "~/hooks/useTranslation";
+import { getFullLanguagePath, getSmartLanguagePath } from "~/utils/url";
 
 export const Welcome: React.FC = () => {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const colorScheme = useColorScheme();
   const isDark = colorScheme === "dark";
 
@@ -35,7 +36,7 @@ export const Welcome: React.FC = () => {
           </Text>
 
           <List spacing="xs">
-            {resources(t).map(({ href, text, icon }) => (
+            {resources(t, language).map(({ href, text, icon }) => (
               <List.Item key={href} icon={icon}>
                 <Anchor
                   to={href}
@@ -53,9 +54,9 @@ export const Welcome: React.FC = () => {
   );
 };
 
-const resources = (t: any) => [
+const resources = (t: any, language: string) => [
   {
-    href: "/posts",
+    href: getSmartLanguagePath("/posts", language),
     text: t("home.posts"),
     icon: (
       <svg
