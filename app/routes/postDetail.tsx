@@ -4,6 +4,7 @@ import { client } from "tina/__generated__/client";
 import { tinaField, useTina } from "tinacms/dist/react";
 import { CustomTinaMarkdown } from "~/components/CustomTinaMarkdown";
 import type { Route } from "./+types/home";
+import { MainLayout } from "~/layouts/MainLayout";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -41,19 +42,19 @@ export default function BlogDetailRoute() {
   const { title, body } = data.post;
 
   return (
-    <Container size="md" py="xl">
+    <MainLayout>
       <Paper p="lg" shadow="sm" withBorder>
         <Stack gap="md">
           <Title order={1}>{title}</Title>
 
           <div
             className="tina-content"
-            data-tina-field={tinaField(data, 'post')}
+            data-tina-field={tinaField(data, "post")}
           >
             <CustomTinaMarkdown content={body} />
           </div>
         </Stack>
       </Paper>
-    </Container>
+    </MainLayout>
   );
 }

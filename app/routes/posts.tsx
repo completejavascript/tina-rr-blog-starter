@@ -1,14 +1,8 @@
-import {
-    Button,
-    Card,
-    Container,
-    Grid,
-    Stack,
-    Text,
-    Title
-} from "@mantine/core";
+import { Button, Card, Grid, Stack, Text, Title } from "@mantine/core";
 import { Link, useLoaderData } from "react-router";
 import { client } from "tina/__generated__/client";
+import { useTranslation } from "~/hooks/useTranslation";
+import { MainLayout } from "~/layouts/MainLayout";
 import type { Route } from "./+types/home";
 
 interface Post {
@@ -49,13 +43,14 @@ export async function loader() {
 
 export default function BlogsRoute() {
   const { posts } = useLoaderData() as LoaderData;
+  const { t } = useTranslation();
 
   return (
-    <Container size="lg" py="xl">
+    <MainLayout>
       <Stack gap="xl">
-        <Title order={1}>Blog Posts</Title>
+        <Title order={1}>{t("posts.title")}</Title>
         <Text c="dimmed" size="lg">
-          Browse our latest articles and insights
+          {t("posts.description")}
         </Text>
 
         <Grid>
@@ -72,7 +67,7 @@ export default function BlogsRoute() {
                     color="blue"
                     fullWidth
                   >
-                    Read Article
+                    {t("posts.readArticle")}
                   </Button>
                 </Stack>
               </Card>
@@ -82,10 +77,10 @@ export default function BlogsRoute() {
 
         {posts.length === 0 && (
           <Text ta="center" mt="xl">
-            No blog posts available. Check back soon!
+            {t("posts.noPosts")}
           </Text>
         )}
       </Stack>
-    </Container>
+    </MainLayout>
   );
 }

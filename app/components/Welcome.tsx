@@ -11,52 +11,52 @@ import { useColorScheme } from "@mantine/hooks";
 import { Link } from "react-router";
 import logoDark from "~/assets/logo-dark.svg";
 import logoLight from "~/assets/logo-light.svg";
+import { useTranslation } from "~/hooks/useTranslation";
 
 export const Welcome: React.FC = () => {
+  const { t } = useTranslation();
   const colorScheme = useColorScheme();
   const isDark = colorScheme === "dark";
 
   return (
-    <Container size="md" py="xl">
-      <Stack align="center" gap="xl">
-        <Image
-          src={isDark ? logoDark : logoLight}
-          alt="React Router"
-          w={500}
-          maw="100vw"
-          p="md"
-        />
+    <Stack align="center" gap="xl">
+      <Image
+        src={isDark ? logoDark : logoLight}
+        alt="React Router"
+        w={500}
+        maw="100vw"
+        p="md"
+      />
 
-        <Paper w={300} withBorder radius="xl" p="lg" shadow="sm">
-          <Stack gap="md">
-            <Text c={isDark ? "gray.2" : "gray.7"} ta="center">
-              What's next?
-            </Text>
+      <Paper w={300} withBorder radius="xl" p="lg" shadow="sm">
+        <Stack gap="md">
+          <Text c={isDark ? "gray.2" : "gray.7"} ta="center">
+            {t("home.title")}
+          </Text>
 
-            <List spacing="xs">
-              {resources.map(({ href, text, icon }) => (
-                <List.Item key={href} icon={icon}>
-                  <Anchor
-                    to={href}
-                    component={Link}
-                    c={isDark ? "blue.5" : "blue.7"}
-                  >
-                    {text}
-                  </Anchor>
-                </List.Item>
-              ))}
-            </List>
-          </Stack>
-        </Paper>
-      </Stack>
-    </Container>
+          <List spacing="xs">
+            {resources(t).map(({ href, text, icon }) => (
+              <List.Item key={href} icon={icon}>
+                <Anchor
+                  to={href}
+                  component={Link}
+                  c={isDark ? "blue.5" : "blue.7"}
+                >
+                  {text}
+                </Anchor>
+              </List.Item>
+            ))}
+          </List>
+        </Stack>
+      </Paper>
+    </Stack>
   );
 };
 
-const resources = [
+const resources = (t: any) => [
   {
     href: "/posts",
-    text: "Blog Posts",
+    text: t("home.posts"),
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
