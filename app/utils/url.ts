@@ -102,3 +102,26 @@ export const translatePath = (path: string, targetLang: string): string => {
   const pathParts = getPathParts(path);
   return constructPathWithLanguage(pathParts, targetLang);
 };
+
+/**
+ * Get the domain URL from the request
+ */
+export const getDomainUrl = (request: Request): string => {
+  const host =
+    request.headers.get("X-Forwarded-Host") ??
+    request.headers.get("host") ??
+    "localhost";
+
+  // Protocol detection
+  const protocol = host.includes("localhost") ? "http" : "https";
+
+  // Construct base URL
+  return `${protocol}://${host}`;
+};
+
+/**
+ * Remove trailing slash from URL if present
+ */
+export const normalizeUrl = (url: string): string => {
+  return url.endsWith("/") ? url.slice(0, -1) : url;
+};

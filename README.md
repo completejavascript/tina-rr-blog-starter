@@ -29,6 +29,7 @@ Replace the `.env.example`, with `.env`
 TINA_CLIENT_ID=<get this from the project you create at app.tina.io>
 TINA_TOKEN=<get this from the project you create at app.tina.io>
 TINA_BRANCH=<Specify the branch with Tina configured>
+APP_URL=<Specify the domain url, example: https://domain.com>
 ```
 
 Build the project:
@@ -90,6 +91,6 @@ This template comes with [Mantine](https://mantine.dev/) already configured for 
 
 - [x] Support multiple languages
 - [ ] Generate robots.txt
-- [ ] Generate sitemap.xml
+- [x] Generate sitemap.xml
 - [ ] Generate metadata for SEO
 - [ ] Update `CustomTinaMarkdown` custom components.

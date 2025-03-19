@@ -14,6 +14,7 @@ export default [
         index("./routes/posts.tsx"),
         route(":slug", "./routes/postDetail.tsx"),
       ]),
-    ])
+    ]),
   ]),
+  route("/sitemap.xml", "./routes/sitemap.xml.tsx"),
 ] satisfies RouteConfig;
