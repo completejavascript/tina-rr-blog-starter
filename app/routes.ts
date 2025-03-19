@@ -17,4 +17,5 @@ export default [
     ]),
   ]),
   route("/sitemap.xml", "./routes/sitemap.xml.tsx"),
+  route("/robots.txt", "./routes/robots.txt.tsx"),
 ] satisfies RouteConfig;

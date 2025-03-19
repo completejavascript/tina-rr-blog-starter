@@ -6,7 +6,6 @@ export default {
 
   async prerender() {
     const routes = await generatePrimaryRoutes();
-    routes.push("/sitemap.xml");
-    return routes;
+    return routes.concat("/sitemap.xml", "/robots.txt");
   },
 } satisfies Config;
