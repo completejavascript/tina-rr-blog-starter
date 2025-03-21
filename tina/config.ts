@@ -1,4 +1,6 @@
 import { defineConfig } from "tinacms";
+import { parseFilename } from "~/utils/file";
+import { getFullLanguagePath } from "~/utils/url";
 
 // Your hosting provider likely exposes this as an environment variable
 const branch =
@@ -34,7 +36,10 @@ export default defineConfig({
         path: "content/posts",
         ui: {
           router: (props) => {
-            return `/posts/${props.document._sys.filename}`;
+            const filename = props.document._sys.filename;
+            const { baseName, language } = parseFilename(filename);
+            const basePostUrl = `/posts/${baseName}`;
+            return getFullLanguagePath(basePostUrl, language);
           },
         },
         fields: [
