@@ -1,5 +1,6 @@
 ---
-title: 'Hello, World!'
+title: "Hello, World!"
+description: "This is a first post"
 ---
 
 ## Hello World!!!
@@ -14,15 +15,15 @@ Internal Link: [Blog Posts](/posts)
 
 External Image: ![](https://octodex.github.com/images/minion.png)
 
-Internal Image: 
+Internal Image:
 
 ![](/assets/image.png)
 
 > blockqoute
 
-* abc
-* def
-* ghi
+- abc
+- def
+- ghi
 
 Next
 

@@ -6,16 +6,6 @@ import { CustomTinaMarkdown } from "~/components/CustomTinaMarkdown";
 import type { Route } from "./+types/home";
 import { extractLanguageFromUrl } from "~/utils/url";
 
-export function meta({}: Route.MetaArgs) {
-  return [
-    { title: "Hello world" },
-    {
-      name: "description",
-      content: "Hello world content from content directory",
-    },
-  ];
-}
-
 export async function loader({ params, request }: Route.LoaderArgs) {
   const { slug } = params;
   const url = request.url;
@@ -30,6 +20,16 @@ export async function loader({ params, request }: Route.LoaderArgs) {
     variables: { ...result.variables },
     query: result.query,
   };
+}
+
+export function meta({ data }: Route.MetaArgs) {
+  return [
+    { title: (data as any)?.data?.post?.title ?? '' },
+    {
+      name: "description",
+      content: (data as any)?.data?.post?.description ?? '',
+    },
+  ];
 }
 
 export default function BlogDetailRoute() {

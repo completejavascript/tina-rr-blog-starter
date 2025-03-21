@@ -1,5 +1,6 @@
 ---
-title: 'Xin chào!'
+title: "Xin chào!"
+description: "Đây là bài viết đầu tiên"
 ---
 
 ## Xin chào!!!
@@ -14,15 +15,15 @@ Internal Link: [Blog Posts](/posts)
 
 External Image: ![](https://octodex.github.com/images/minion.png)
 
-Internal Image: 
+Internal Image:
 
 ![](/assets/image.png)
 
 > blockqoute
 
-* abc
-* def
-* ghi
+- abc
+- def
+- ghi
 
 Next
 

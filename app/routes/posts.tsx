@@ -2,9 +2,9 @@ import { Button, Card, Grid, Stack, Text, Title } from "@mantine/core";
 import { Link, useLoaderData } from "react-router";
 import client from "tina/__generated__/client";
 import { usePathWithLanguage } from "~/hooks/usePathWithLanguage";
-import { useTranslation } from "~/hooks/useTranslation";
+import { getTranslation, useTranslation } from "~/hooks/useTranslation";
 import { parseFilename } from "~/utils/file";
-import { extractLanguageFromUrl } from "~/utils/url";
+import { extractLanguageFromPath, extractLanguageFromUrl } from "~/utils/url";
 import type { Route } from "./+types/home";
 
 interface Post {
@@ -17,12 +17,15 @@ interface LoaderData {
   posts: Post[];
 }
 
-export function meta({}: Route.MetaArgs) {
+export function meta({ location }: Route.MetaArgs) {
+  const { pathname } = location;
+  const language = extractLanguageFromPath(pathname);
+
   return [
-    { title: "Blog Posts" },
+    { title: getTranslation("posts.meta.title", language) },
     {
       name: "description",
-      content: "Browse our collection of blog posts",
+      content: getTranslation("posts.meta.description", language),
     },
   ];
 }
