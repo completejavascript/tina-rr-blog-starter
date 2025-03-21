@@ -32,7 +32,7 @@ export const Welcome: React.FC = () => {
       <Paper w={300} withBorder radius="xl" p="lg" shadow="sm">
         <Stack gap="md">
           <Text c={isDark ? "gray.2" : "gray.7"} ta="center">
-            {t("home.title")}
+            {t("home.welcome.title")}
           </Text>
 
           <List spacing="xs">
@@ -57,7 +57,7 @@ export const Welcome: React.FC = () => {
 const resources = (t: any, language: string) => [
   {
     href: getSmartLanguagePath("/posts", language),
-    text: t("home.posts"),
+    text: t("home.welcome.posts"),
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"

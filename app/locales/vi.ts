@@ -1,7 +1,9 @@
 const translations = {
   home: {
-    title: "Tiếp theo là gì?",
-    posts: "Danh sách bài viết",
+    welcome: {
+      title: "Tiếp theo là gì?",
+      posts: "Danh sách bài viết",
+    },
   },
   posts: {
     title: "Danh sách bài viết",

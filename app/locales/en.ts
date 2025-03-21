@@ -1,7 +1,9 @@
 const translations = {
   home: {
-    title: "What's next?",
-    posts: "Blog Posts",
+    welcome: {
+      title: "What's next?",
+      posts: "Blog Posts",
+    },
   },
   posts: {
     title: "Blog Posts",
