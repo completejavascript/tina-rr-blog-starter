@@ -1,15 +1,13 @@
 import { Paper, Stack, Title } from "@mantine/core";
+import appConfig from "config";
 import { useLoaderData } from "react-router";
 import { client } from "tina/__generated__/client";
 import { tinaField, useTina } from "tinacms/dist/react";
 import { CustomTinaMarkdown } from "~/components/CustomTinaMarkdown";
 import type { Route } from "./+types/home";
-import { extractLanguageFromUrl } from "~/utils/url";
 
-export async function loader({ params, request }: Route.LoaderArgs) {
-  const { slug } = params;
-  const url = request.url;
-  const language = extractLanguageFromUrl(url);
+export async function loader({ params }: Route.LoaderArgs) {
+  const { slug, language = appConfig.defaultLanguage } = params;
 
   const result = await client.queries.post({
     relativePath: `${slug}.${language}.md`,
@@ -24,10 +22,10 @@ export async function loader({ params, request }: Route.LoaderArgs) {
 
 export function meta({ data }: Route.MetaArgs) {
   return [
-    { title: (data as any)?.data?.post?.title ?? '' },
+    { title: (data as any)?.data?.post?.title ?? "" },
     {
       name: "description",
-      content: (data as any)?.data?.post?.description ?? '',
+      content: (data as any)?.data?.post?.description ?? "",
     },
   ];
 }

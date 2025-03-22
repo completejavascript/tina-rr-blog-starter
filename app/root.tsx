@@ -22,10 +22,10 @@ import {
   useLoaderData,
 } from "react-router";
 
+import appConfig from "config";
 import type { Route } from "./+types/root";
 import "./app.css";
 import LanguageProvider from "./context/LanguageContext";
-import { extractLanguageFromUrl } from "./utils/url";
 
 // export const links: Route.LinksFunction = () => [
 //   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -40,13 +40,12 @@ import { extractLanguageFromUrl } from "./utils/url";
 //   },
 // ];
 
-export async function loader({ request }: Route.LoaderArgs) {
-  const url = request.url;
-  const languageFromUrl = extractLanguageFromUrl(url);
+export async function loader({ params }: Route.LoaderArgs) {
+  const { language = appConfig.defaultLanguage } = params;
 
   return {
     data: {
-      language: languageFromUrl,
+      language,
     },
   };
 }
