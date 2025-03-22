@@ -1,5 +1,5 @@
 {
-  "name": "tina-rr-blog-template",
+  "name": "tina-rr-blog-starter",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -11,15 +11,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/completejavascript/tina-rr-blog-template.git"
+    "url": "git+https://github.com/completejavascript/tina-rr-blog-starter.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/completejavascript/tina-rr-blog-template/issues"
+    "url": "https://github.com/completejavascript/tina-rr-blog-starter/issues"
   },
-  "homepage": "https://github.com/completejavascript/tina-rr-blog-template#readme",
+  "homepage": "https://github.com/completejavascript/tina-rr-blog-starter#readme",
   "description": "",
   "dependencies": {
     "@mantine/core": "^7.17.1",
