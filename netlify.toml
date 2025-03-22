@@ -4,3 +4,8 @@ publish = "build/client"
 
 [dev]
 command = "pnpm run dev"
+
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200
