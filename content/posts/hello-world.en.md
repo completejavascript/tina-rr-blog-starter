@@ -13,7 +13,7 @@ External Link: [google](https://google.com)
 
 Internal Link: [Blog Posts](/posts)
 
-External Image: ![](/assetshttps://octodex.github.com/images/minion.png)
+External Image: ![](https://octodex.github.com/images/minion.png)
 
 Internal Image:
 

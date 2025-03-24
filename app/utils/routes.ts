@@ -36,8 +36,26 @@ export const generatePrimaryRoutes = async () => {
         routes.push(basePostUrl);
       }
     });
+
+    // Fetch all pages from Tina CMS
+    const pagesResponse = await client.queries.pageConnection();
+
+    // Process each page
+    pagesResponse.data.pageConnection.edges?.forEach((edge) => {
+      if (!edge?.node) return;
+
+      const filename = edge.node._sys.filename;
+      const { baseName, language } = parseFilename(filename);
+
+      const basePageUrl = `/${baseName}`;
+      routes.push(getFullLanguagePath(basePageUrl, language));
+
+      if (!routes.includes(basePageUrl)) {
+        routes.push(basePageUrl);
+      }
+    });
   } catch (error) {
-    console.error("Error fetching posts for prerendering:", error);
+    console.error("Error fetching content for prerendering:", error);
   }
 
   return routes;

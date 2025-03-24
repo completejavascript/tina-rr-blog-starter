@@ -1,17 +1,17 @@
-import { Paper, Stack, Title } from "@mantine/core";
+import { Paper, Stack } from "@mantine/core";
 import { useLoaderData } from "react-router";
 import { client } from "tina/__generated__/client";
 import { tinaField, useTina } from "tinacms/dist/react";
 import { CustomTinaMarkdown } from "~/components/CustomTinaMarkdown";
 import { extractLanguageFromUrl } from "~/utils/url";
-import type { Route } from "./+types/postDetail";
+import type { Route } from "./+types/pageDetail";
 
 export async function loader({ params, request }: Route.LoaderArgs) {
-  const { slug } = params;
+  const { pageSlug } = params;
   const language = extractLanguageFromUrl(request.url);
 
-  const result = await client.queries.post({
-    relativePath: `${slug}.${language}.md`,
+  const result = await client.queries.page({
+    relativePath: `${pageSlug}.${language}.md`,
   });
 
   return {
@@ -23,15 +23,15 @@ export async function loader({ params, request }: Route.LoaderArgs) {
 
 export function meta({ data }: Route.MetaArgs) {
   return [
-    { title: (data as any)?.data?.post?.title ?? "" },
+    { title: (data as any)?.data?.page?.title ?? "" },
     {
       name: "description",
-      content: (data as any)?.data?.post?.description ?? "",
+      content: (data as any)?.data?.page?.description ?? "",
     },
   ];
 }
 
-export default function BlogDetailRoute() {
+export default function PageDetailRoute() {
   const loaderData = useLoaderData<typeof loader>();
 
   const { data } = useTina({
@@ -40,14 +40,12 @@ export default function BlogDetailRoute() {
     data: loaderData.data,
   });
 
-  const { title, body } = data.post;
+  const { body } = data.page;
 
   return (
-    <Paper p="lg" shadow="sm" withBorder>
+    <Paper p="xl" withBorder={false}>
       <Stack gap="md">
-        <Title order={1}>{title}</Title>
-
-        <div className="tina-content" data-tina-field={tinaField(data, "post")}>
+        <div className="tina-content" data-tina-field={tinaField(data, "page")}>
           <CustomTinaMarkdown content={body} />
         </div>
       </Stack>

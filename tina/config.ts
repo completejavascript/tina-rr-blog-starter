@@ -65,6 +65,41 @@ export default defineConfig({
           },
         ],
       },
+      {
+        name: "page",
+        label: "Pages",
+        path: "content/pages",
+        ui: {
+          router: (props) => {
+            const filename = props.document._sys.filename;
+            const { baseName, language } = parseFilename(filename);
+            const basePageUrl = `/${baseName}`;
+            return getFullLanguagePath(basePageUrl, language);
+          },
+        },
+        fields: [
+          {
+            type: "string",
+            name: "title",
+            label: "Title",
+            isTitle: true,
+            required: true,
+          },
+          {
+            type: "string",
+            name: "description",
+            label: "Description",
+            isTitle: false,
+            required: false,
+          },
+          {
+            type: "rich-text",
+            name: "body",
+            label: "Body",
+            isBody: true,
+          },
+        ],
+      },
     ],
   },
 });

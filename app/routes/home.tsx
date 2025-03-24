@@ -1,10 +1,10 @@
-import appConfig from "config";
 import { Welcome } from "~/components/Welcome";
 import { getTranslation } from "~/hooks/useTranslation";
+import { extractLanguageFromPath } from "~/utils/url";
 import type { Route } from "./+types/home";
 
-export function meta({ params }: Route.MetaArgs) {
-  const { language = appConfig.defaultLanguage } = params;
+export function meta({ location }: Route.MetaArgs) {
+  const language = extractLanguageFromPath(location.pathname);
 
   return [
     { title: getTranslation("home.meta.title", language) },
